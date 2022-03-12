@@ -29,7 +29,7 @@ class Episode extends Equatable {
     return Episode(
       id: json['id'] as int,
       name: json['name'],
-      airDate: "json['air_date']",
+      airDate: json['air_date'],
       episode: json['episode'],
       characteres: json['characters'] as List,
       created: json['created'],
