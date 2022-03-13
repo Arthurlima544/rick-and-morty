@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty/controller/pages/home_page/home_page_controller.dart';
 import 'package:rick_and_morty/utils/app_colors.dart';
+import 'package:rick_and_morty/view/detail_page/detail_page.dart';
 import 'package:rick_and_morty/view/home_page/components/episode_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: Container(
-          color: Colors.black26,
+          color: AppColors.secondary,
           alignment: Alignment.center,
           child: const Text(
             "Rick and Morty",
@@ -34,7 +35,15 @@ class HomePage extends StatelessWidget {
                   if (episode.isLoading) {
                     return EpisodeCard(episode: episode);
                   }
-                  return EpisodeCard(episode: episode);
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return DetailPage(episode: episode);
+                      }));
+                    },
+                    child: EpisodeCard(episode: episode),
+                  );
                 },
               )),
     );
