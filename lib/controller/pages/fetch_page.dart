@@ -7,7 +7,7 @@ import 'package:rick_and_morty/model/episode_page.dart';
 const totalItensLength = 300;
 int page = 1;
 
-Future<EpisodePage> fetchPage(int startingIndex) async {
+Future<EpisodePage> fetchEpisodePage(int startingIndex) async {
   RickAndMortyService service = RickAndMortyService(ClientDio());
 
   if (startingIndex > 20) {

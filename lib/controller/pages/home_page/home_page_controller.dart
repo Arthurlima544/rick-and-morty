@@ -23,7 +23,7 @@ class HomePageController extends ChangeNotifier {
     }
 
     _pagesBeingFetched.add(startingIndex);
-    final page = await fetchPage(startingIndex);
+    final page = await fetchEpisodePage(startingIndex);
     _pagesBeingFetched.remove(startingIndex);
 
     if (!page.hasNext) {
