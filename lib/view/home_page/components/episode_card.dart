@@ -19,7 +19,11 @@ class EpisodeCard extends StatelessWidget {
         top: 40,
       ),
       child: Container(
-        color: AppColors.secondary,
+        decoration: BoxDecoration(
+          color: AppColors.secondary,
+          border: Border.all(width: 10, color: AppColors.secondary),
+          borderRadius: BorderRadius.circular(10),
+        ),
         height: 104,
         width: MediaQuery.of(context).size.width - 37,
         child: Column(
