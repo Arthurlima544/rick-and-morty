@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/controller/pages/fetch_page.dart';
+import 'package:rick_and_morty/controller/pages/fetch_episode_page.dart';
 import 'package:rick_and_morty/model/episode.dart';
 import 'package:rick_and_morty/model/episode_page.dart';
 
