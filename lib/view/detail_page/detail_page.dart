@@ -4,6 +4,7 @@ import 'package:rick_and_morty/model/character.dart';
 import 'package:rick_and_morty/model/episode.dart';
 import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/view/detail_page/components/caracter_card.dart';
+import 'package:rick_and_morty/view/detail_page/components/detail_page_app_bar.dart';
 
 class DetailPage extends StatefulWidget {
   final Episode episode;
@@ -25,57 +26,18 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   @override
+  void dispose() {
+    controller.list.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(108.0),
-        child: Column(
-          children: [
-            Container(
-              height: 70,
-              color: AppColors.secondary,
-              child: Row(
-                children: [
-                  const BackButton(),
-                  Flexible(
-                    child: Container(),
-                  ),
-                  Flexible(
-                    flex: 6,
-                    child: Text(
-                      "Ep - ${widget.episode.name}",
-                      textAlign: TextAlign.left,
-                      style:
-                          const TextStyle(color: AppColors.font, fontSize: 18),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 38,
-              color: AppColors.forLayer,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    widget.episode.episode,
-                    textAlign: TextAlign.center,
-                    style:
-                        const TextStyle(color: AppColors.primary, fontSize: 15),
-                  ),
-                  Text(
-                    widget.episode.airDate,
-                    textAlign: TextAlign.center,
-                    style:
-                        const TextStyle(color: AppColors.primary, fontSize: 15),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+        child: DetailPageAppBar(episode: widget.episode),
       ),
       body: ValueListenableBuilder(
         valueListenable: controller.list,
