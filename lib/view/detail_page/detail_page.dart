@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/controller/pages/detail_page/detail_page_controller.dart';
+import 'package:rick_and_morty/model/character.dart';
 import 'package:rick_and_morty/model/episode.dart';
 import 'package:rick_and_morty/utils/app_colors.dart';
 import 'package:rick_and_morty/view/detail_page/components/caracter_card.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final Episode episode;
   const DetailPage({Key? key, required this.episode}) : super(key: key);
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  DetailPageController controller = DetailPageController();
+  @override
+  void initState() {
+    controller.list.addListener(() {
+      setState(() {});
+    });
+    controller.getCharacteres(widget.episode);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +44,7 @@ class DetailPage extends StatelessWidget {
                   Flexible(
                     flex: 6,
                     child: Text(
-                      "Ep - ${episode.name}",
+                      "Ep - ${widget.episode.name}",
                       textAlign: TextAlign.left,
                       style:
                           const TextStyle(color: AppColors.font, fontSize: 18),
@@ -43,13 +60,13 @@ class DetailPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    episode.episode,
+                    widget.episode.episode,
                     textAlign: TextAlign.center,
                     style:
                         const TextStyle(color: AppColors.primary, fontSize: 15),
                   ),
                   Text(
-                    episode.airDate,
+                    widget.episode.airDate,
                     textAlign: TextAlign.center,
                     style:
                         const TextStyle(color: AppColors.primary, fontSize: 15),
@@ -60,11 +77,25 @@ class DetailPage extends StatelessWidget {
           ],
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return CaracterCard();
+      body: ValueListenableBuilder(
+        valueListenable: controller.list,
+        builder: (context, List<Character> value, child) {
+          if (value.isEmpty) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: AppColors.font,
+              ),
+            );
+          }
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return CaracterCard(
+                character: value[index],
+              );
+            },
+            itemCount: widget.episode.characteres.length,
+          );
         },
-        itemCount: episode.characteres.length,
       ),
     );
   }
