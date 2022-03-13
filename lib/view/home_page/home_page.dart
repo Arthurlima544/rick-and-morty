@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rick_and_morty/controller/pages/home_page/home_page_controller.dart';
+import 'package:rick_and_morty/utils/app_colors.dart';
+import 'package:rick_and_morty/view/home_page/components/episode_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -8,13 +10,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(103.0),
+        preferredSize: const Size.fromHeight(70.0),
         child: Container(
           color: Colors.black26,
           alignment: Alignment.center,
           child: const Text(
             "Rick and Morty",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: AppColors.font, fontSize: 18),
           ),
         ),
       ),
@@ -27,18 +32,9 @@ class HomePage extends StatelessWidget {
 
                   var episode = pagesProvider.getByIndex(index);
                   if (episode.isLoading) {
-                    return Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text(episode.name),
-                    );
+                    return EpisodeCard(episode: episode);
                   }
-                  return Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text(episode.name), Text("${episode.id}")],
-                    ),
-                  );
+                  return EpisodeCard(episode: episode);
                 },
               )),
     );
