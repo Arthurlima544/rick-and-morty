@@ -25,6 +25,13 @@ class Episode extends Equatable {
             characteres: [],
             created: "");
 
+  bool get isLoading => (id == 0 &&
+      name == "" &&
+      airDate == "" &&
+      episode == "" &&
+      characteres == [] &&
+      created == "");
+
   factory Episode.fromJson(Map<String, dynamic> json) {
     return Episode(
       id: json['id'] as int,
