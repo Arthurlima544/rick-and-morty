@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           color: AppColors.secondary,
           alignment: Alignment.center,
           child: const Text(
-            "Rick and Morty",
+            "Rick and Morty Episodes",
             textAlign: TextAlign.center,
             style: TextStyle(color: AppColors.font, fontSize: 18),
           ),
