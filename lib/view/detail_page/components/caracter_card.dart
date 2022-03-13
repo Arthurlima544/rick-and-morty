@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/model/character.dart';
 import 'package:rick_and_morty/utils/app_colors.dart';
 
 class CaracterCard extends StatelessWidget {
-  const CaracterCard({Key? key}) : super(key: key);
+  final Character character;
+  const CaracterCard({Key? key, required this.character}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,47 +20,36 @@ class CaracterCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width - 37,
         child: Row(
           children: [
-            const SizedBox(
+            Image(
               height: 104,
-              width: 84,
-            ),
-            Flexible(
-              child: Container(),
+              image: NetworkImage(character.urlImage),
             ),
             Flexible(
               flex: 5,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "episode",
-                        style: const TextStyle(
-                            color: AppColors.font, fontSize: 13),
-                      ),
-                      Text(
-                        "episode",
-                        style: const TextStyle(
-                            color: AppColors.font, fontSize: 13),
-                      ),
-                    ],
+                  Flexible(
+                    child: Container(),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "episode",
-                        style: const TextStyle(
-                            color: AppColors.font, fontSize: 13),
-                      ),
-                      Text(
-                        "episode",
-                        style: const TextStyle(
-                            color: AppColors.font, fontSize: 13),
-                      ),
-                    ],
+                  Flexible(
+                    flex: 2,
+                    child: Text(
+                      character.name,
+                      overflow: TextOverflow.clip,
+                      style:
+                          const TextStyle(color: AppColors.font, fontSize: 18),
+                    ),
+                  ),
+                  Flexible(
+                    child: Container(),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Text(
+                      "${character.status} - ${character.gender}",
+                      style:
+                          const TextStyle(color: AppColors.font, fontSize: 13),
+                    ),
                   ),
                 ],
               ),
