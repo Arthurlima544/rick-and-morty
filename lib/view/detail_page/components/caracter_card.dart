@@ -15,14 +15,21 @@ class CaracterCard extends StatelessWidget {
         top: 40,
       ),
       child: Container(
-        color: AppColors.secondary,
+        decoration: BoxDecoration(
+          color: AppColors.secondary,
+          border: Border.all(width: 10, color: AppColors.secondary),
+          borderRadius: BorderRadius.circular(10),
+        ),
         height: 104,
         width: MediaQuery.of(context).size.width - 37,
         child: Row(
           children: [
-            Image(
-              height: 104,
-              image: NetworkImage(character.urlImage),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image(
+                height: 104,
+                image: NetworkImage(character.urlImage),
+              ),
             ),
             Flexible(
               flex: 5,
