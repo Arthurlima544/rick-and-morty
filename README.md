@@ -32,6 +32,6 @@ flutter drive \ --driver=test_driver/integration_test.dart \ --target=integratio
 
 ##Organization
 
-- ZenHub to define issues and see what i have done.
+- [ZenHub](https://github.com/Arthurlima544/rick-and-morty/blob/main/README.md#zenhub) to define issues and see what i have done.
 - [Figma](https://www.figma.com/file/LbywsRgCFDp79NK2jH8qtS/Rick-and-morty?node-id=0%3A1) to have an idea of app UI.
 
